@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navPrice"
+        android:icon="@drawable/ic_bottom_price"
+        android:title="@string/navPrice" />
+    <item
+        android:id="@+id/navAlarm"
+        android:icon="@drawable/ic_bottom_alarm"
+        android:title="@string/navAlarm" />
+    <item
+        android:id="@+id/navNews"
+        android:icon="@drawable/ic_bottom_news"
+        android:title="@string/navNews" />
+
+</menu>

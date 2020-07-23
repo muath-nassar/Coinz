@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_8sdp"
+    android:elevation="@dimen/_3sdp"
+    android:layout_margin="@dimen/_3sdp"
+
+       >
+        <LinearLayout
+
+            android:background="#F2F2F2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            android:gravity="center"
+            android:padding="@dimen/_15sdp">
+            <ImageView
+                android:id="@+id/imgCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"/>
+            <TextView
+                android:id="@+id/tvCurrencyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CurrencyName"
+                style="@style/cardTitleandSubtitle"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tvTradeAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$100000"
+                style="@style/cardTitleandSubtitle"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>

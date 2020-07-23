@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layoutDirection="rtl"
+        tools:context=".ui.fragments.PriceFragment">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currencies_price"
+            style="@style/titleFont"
+           />
+        <TextView
+            android:id="@+id/tvLastUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_update"/>
+      <androidx.recyclerview.widget.RecyclerView
+          android:padding="@dimen/_10sdp"
+          android:layout_marginTop="@dimen/_20sdp"
+          android:id="@+id/rvSelectedCurrencies"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          />
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_20sdp"
+            android:weightSum="3"
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#F8F9FB"
+            android:layoutDirection="rtl">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/header_currency"
+                style="@style/headerFont"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/header_price"
+                android:textAlignment="center"
+                style="@style/headerFont"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/header_trading"
+                android:textAlignment="textEnd"
+                style="@style/headerFont"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCurrencyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:reverseLayout="false" />
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

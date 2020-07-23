@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">بلوك \nتشين</string>
+    <!--bottom navigation-->
+    <string name="navPrice">أسعار العملات</string>
+    <string name="navAlarm">منبه العملات</string>
+    <string name="navNews">الأخبار والتقارير</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="currencies_price">أسعار العملات الالكترونية</string>
+    <string name="last_update">آخر تحديث</string>
+    <string name="header_currency">العملة</string>
+    <string name="header_price">السعر</string>
+    <string name="header_trading">التداول</string>
 
 </resources>
