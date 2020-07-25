@@ -7,12 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coinz.R
 import com.example.coinz.models.Currency
+import kotlinx.android.synthetic.main.card_currency.view.*
+import kotlinx.android.synthetic.main.currency_row.view.*
 
 
 class CurrencyTableAdapter(var context: Context, var data: MutableList<Currency>) :
     RecyclerView.Adapter<CurrencyTableAdapter.MyViewHolder>() {
+     private var index = 0
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val tvNumber = itemView.tvNumber  ****** for demonestration
+        //val tvNumber = itemView.tvNumber  ****** for demonstration
+        val tvName = itemView.tvTableCuName
+        val tvTrade = itemView.tvTableTrade
+        val img = itemView.imgTableCu
 
     }
 
@@ -27,6 +33,6 @@ class CurrencyTableAdapter(var context: Context, var data: MutableList<Currency>
 
 
     override fun onBindViewHolder(holder: CurrencyTableAdapter.MyViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
     }
 }

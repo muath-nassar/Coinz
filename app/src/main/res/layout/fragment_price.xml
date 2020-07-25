@@ -40,7 +40,9 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="#F8F9FB"
-            android:layoutDirection="rtl">
+            android:layoutDirection="rtl"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -67,7 +69,9 @@
             android:id="@+id/rvCurrencyList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:reverseLayout="false" />
+            app:reverseLayout="false"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingStart="@dimen/_5sdp"/>
     </LinearLayout>
 
 

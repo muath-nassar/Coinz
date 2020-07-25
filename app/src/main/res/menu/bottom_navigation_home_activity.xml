@@ -9,8 +9,10 @@
         android:icon="@drawable/ic_bottom_alarm"
         android:title="@string/navAlarm" />
     <item
+
         android:id="@+id/navNews"
         android:icon="@drawable/ic_bottom_news"
-        android:title="@string/navNews" />
+        android:title="@string/navNews"
+        />
 
 </menu>

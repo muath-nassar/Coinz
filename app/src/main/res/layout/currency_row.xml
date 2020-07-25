@@ -4,8 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:paddingBottom="@dimen/_1sdp">
     <TextView
+        android:textSize="@dimen/_10ssp"
         android:layout_weight="1"
         android:id="@+id/tvTableIndex"
         android:layout_width="0dp"
@@ -13,28 +15,34 @@
         android:text="1"/>
 
     <ImageView
+
         android:layout_weight="1"
         android:id="@+id/imgTableCu"
-        android:layout_width="@dimen/_24sdp"
-        android:layout_height="@dimen/_24sdp"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_eth" />
     <TextView
+        android:fontFamily="@font/swissra_thin"
+        android:textSize="@dimen/_10ssp"
         android:textAlignment="textEnd"
         android:layout_weight="4"
         android:id="@+id/tvTableCuName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name of Currency"/>
+        android:text="name of Currency"
+      />
     <TextView
+        android:textSize="@dimen/_10ssp"
         android:layout_weight="2"
         android:id="@+id/tvTablePrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$1000"
-        android:textAlignment="textStart"/>
+        android:textAlignment="textEnd"/>
     <TextView
-        android:textAlignment="textStart"
+        android:textSize="@dimen/_10ssp"
+        android:textAlignment="textEnd"
         android:layout_weight="2"
         android:id="@+id/tvTableTrade"
         android:layout_width="wrap_content"

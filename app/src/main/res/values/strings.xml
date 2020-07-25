@@ -11,5 +11,13 @@
     <string name="header_currency">العملة</string>
     <string name="header_price">السعر</string>
     <string name="header_trading">التداول</string>
+    <string name="currency_alarm_title">منبه العملات</string>
+    <string name="please_select_currency_type">يرجى اختيار نوع العملة</string>
+    <string name="please_set_alarm_amount">يرجى تحديد قيمة المنبه</string>
+    <string name="add_alarm_button">إضافة منبه</string>
+    <string-array name="spinner_alarm_type">
+        <item>أكبر من</item>
+        <item>أصغر من</item>
+    </string-array>
 
 </resources>

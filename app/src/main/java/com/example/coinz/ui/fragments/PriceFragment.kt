@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinz.R
+import com.example.coinz.adapters.CurrencyTableAdapter
 import com.example.coinz.adapters.SelectedCurrencyRvAdapter
 import com.example.coinz.models.Currency
 import kotlinx.android.synthetic.main.fragment_price.*
@@ -35,6 +37,11 @@ class PriceFragment : Fragment() {
         val adapter = SelectedCurrencyRvAdapter(activity!!.applicationContext,data)
         rvSelectedCurrencies.adapter = adapter
         rvSelectedCurrencies.layoutManager = gridLayoutManager
+        // define the second adapter with the it RV
+        val linearLayoutManager = LinearLayoutManager(activity)
+        val adapter2 = CurrencyTableAdapter(activity!!.applicationContext,data)
+        rvCurrencyList.adapter =adapter2
+        rvCurrencyList.layoutManager= linearLayoutManager
     }
 
     override fun onResume() {
