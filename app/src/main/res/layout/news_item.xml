@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/news_border"
+    android:layoutDirection="rtl"
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_5sdp"
+    android:padding="@dimen/_5sdp"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_7sdp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imgNewsCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/news_img_shape"
+        android:elevation="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:padding="@dimen/_30sdp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/imgNews"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_eth" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_toEndOf="@+id/imgNewsCard"
+        android:id="@+id/etTitleNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textSize="@dimen/_10ssp"
+        android:gravity="start|top"
+        android:text="عنوان الخبر"
+        android:textStyle="bold"
+        style="@style/NewsTitleFont"
+        android:layout_marginStart="7dp"/>
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/imgNewsCard"
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10/5/2020"
+        android:layout_marginStart="7dp"
+        style="@style/number"
+        android:textSize="@dimen/_10ssp"/>
+</RelativeLayout>

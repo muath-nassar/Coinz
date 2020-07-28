@@ -15,6 +15,11 @@
     <string name="please_select_currency_type">يرجى اختيار نوع العملة</string>
     <string name="please_set_alarm_amount">يرجى تحديد قيمة المنبه</string>
     <string name="add_alarm_button">إضافة منبه</string>
+    <string name="news_and_reports">أخبار وتقارير</string>
+    <string name="back_btn">رجوع</string>
+    <string name="share_btn">مشاركة</string>
+    <string name="facebook_share">مشاركة عبر فيسبوك</string>
+    <string name="twitter_share_btn">مشاركة عبر تويتر</string>
     <string-array name="spinner_alarm_type">
         <item>أكبر من</item>
         <item>أصغر من</item>

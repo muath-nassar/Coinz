@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:theme="@style/material">
 
 <FrameLayout
     android:id="@+id/mainFrame"
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-      
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:background="#F9F9FA"
         app:menu="@menu/bottom_navigation_home_activity"/>
 </RelativeLayout>

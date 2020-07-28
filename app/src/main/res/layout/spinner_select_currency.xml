@@ -3,7 +3,7 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
-    android:padding="@dimen/_10sdp"
+    android:padding="@dimen/_6sdp"
     android:gravity="center_vertical">
     <ImageView
         android:layout_width="@dimen/_24sdp"
@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="اسم العملة"
+        android:textColor="@color/black"
         android:paddingStart="@dimen/_10ssp"
         android:paddingEnd="@dimen/_10ssp"
         />

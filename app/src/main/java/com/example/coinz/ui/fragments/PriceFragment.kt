@@ -33,7 +33,15 @@ class PriceFragment : Fragment() {
         data.add(Currency(null,null,null)); data.add(Currency(null,null,null));
         data.add(Currency(null,null,null)); data.add(Currency(null,null,null));
 
-        val gridLayoutManager = GridLayoutManager(activity,2)
+        val gridLayoutManager = object : GridLayoutManager(activity, 2) {
+            override fun canScrollHorizontally(): Boolean {
+                return false
+            }
+
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+        }
         val adapter = SelectedCurrencyRvAdapter(activity!!.applicationContext,data)
         rvSelectedCurrencies.adapter = adapter
         rvSelectedCurrencies.layoutManager = gridLayoutManager

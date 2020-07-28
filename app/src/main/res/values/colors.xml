@@ -14,4 +14,7 @@
     <color name="green_end">#47E546</color>
     <color name="white">#ffffff</color>
     <color name="gray">#95989C</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="semi_gray">#f2f2f2</color>
+    <color name="black">#000</color>
 </resources>

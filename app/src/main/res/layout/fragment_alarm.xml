@@ -7,8 +7,10 @@
     tools:context=".ui.fragments.AlarmFragment">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:layoutDirection="rtl"
         android:orientation="vertical">
 
@@ -24,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
-            android:paddingStart="@dimen/_10sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
             android:text="@string/please_select_currency_type" />
 
         <androidx.appcompat.widget.AppCompatSpinner
@@ -44,6 +47,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layoutDirection="rtl"
             android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
             android:text="@string/please_set_alarm_amount" />
 
         <LinearLayout
@@ -51,50 +55,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
             android:layoutDirection="rtl"
             android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/spinnerAlarmType"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_49sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/shape_spinner_select_alarm_type"
-                android:entries="@array/spinner_alarm_type"
                 android:layoutDirection="rtl"
                 android:overlapAnchor="false"
                 android:popupBackground="#DFFFFFFF"
                 android:textAlignment="center"
-                tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+                tools:listitem="@layout/text_spinner" />
 
             <EditText
                 android:id="@+id/tvMoneyAmountAlarm"
+                style="@style/number"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_49sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_weight="1"
+                android:autofillHints="Add amount"
                 android:background="@drawable/shape_text_money_alarm"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:hint="$1000"
-                style="@style/number"
-                android:textAlignment="center" />
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="@dimen/_10ssp" />
         </LinearLayout>
 
         <Button
-
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_orange"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/button_alarm"
             android:fontFamily="@font/swissra_bold"
             android:padding="@dimen/_10sdp"
             android:text="@string/add_alarm_button"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -102,15 +108,15 @@
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@color/gray" />
+            android:background="@color/semi_gray" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAlarms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvAlarms"
             android:layout_gravity="center_horizontal"
-            tools:listitem="@layout/alarm_rv_item"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
+
+            tools:listitem="@layout/alarm_rv_item" />
     </LinearLayout>
 
 

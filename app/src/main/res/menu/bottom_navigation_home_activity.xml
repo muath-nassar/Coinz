@@ -2,16 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navPrice"
-        android:icon="@drawable/ic_bottom_price"
-        android:title="@string/navPrice" />
+        android:icon="@drawable/ic_price_gray"
+        android:title="@string/navPrice"
+        />
     <item
         android:id="@+id/navAlarm"
-        android:icon="@drawable/ic_bottom_alarm"
+        android:icon="@drawable/ic_bell_gray"
         android:title="@string/navAlarm" />
     <item
 
         android:id="@+id/navNews"
-        android:icon="@drawable/ic_bottom_news"
+        android:icon="@drawable/ic_menu_gray"
         android:title="@string/navNews"
         />
 
