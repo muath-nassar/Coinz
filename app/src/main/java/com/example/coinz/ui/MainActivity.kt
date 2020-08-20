@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.coinz.R
+import com.example.coinz.models.Currency
 import com.example.coinz.ui.fragments.AlarmFragment
 import com.example.coinz.ui.fragments.NewsFragment
 import com.example.coinz.ui.fragments.PriceFragment
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    var currencyList: MutableList<Currency> = mutableListOf()
 
     //----------------------
     private val mOnNavigationItemSelectedListener =
@@ -82,4 +84,5 @@ class MainActivity : AppCompatActivity() {
         navBottom.menu.findItem(R.id.navAlarm).setIcon(R.drawable.ic_bell_gray)
         navBottom.menu.findItem(R.id.navNews).setIcon(R.drawable.ic_menu_gray)
     }
+
 }

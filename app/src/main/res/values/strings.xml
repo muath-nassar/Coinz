@@ -20,6 +20,7 @@
     <string name="share_btn">مشاركة</string>
     <string name="facebook_share">مشاركة عبر فيسبوك</string>
     <string name="twitter_share_btn">مشاركة عبر تويتر</string>
+    <string name="select_currency_dialog_title">اختر العملة التي تريدها</string>
     <string-array name="spinner_alarm_type">
         <item>أكبر من</item>
         <item>أصغر من</item>
