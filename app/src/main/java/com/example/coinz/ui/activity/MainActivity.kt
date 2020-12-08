@@ -1,36 +1,24 @@
 package com.example.coinz.ui
 
 import android.content.SharedPreferences
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.ContentLoadingProgressBar
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.coinz.R
 import com.example.coinz.adapters.MyPagerAdapter
 import com.example.coinz.models.Currency
-import com.example.coinz.models.CurrencyResponse
-import com.example.coinz.retrofit.ApiClient
-import com.example.coinz.retrofit.ApiInterface
 import com.example.coinz.ui.fragments.AlarmFragment
 import com.example.coinz.ui.fragments.NewsFragment
 import com.example.coinz.ui.fragments.PriceFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_price.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 
 class MainActivity : AppCompatActivity() {
     companion object {
-
     }
 
     lateinit var priceFragment: PriceFragment
@@ -40,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     var currencyList: MutableList<Currency> = mutableListOf()
     private lateinit var loadingProgressBar: ContentLoadingProgressBar
 
-    //----------------------
+    // ----------------------
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             newsDescriptionFragHolder.visibility = View.GONE
@@ -49,26 +37,24 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.navPrice -> {
-                    //replaceFragment(priceFragment)
+                    // replaceFragment(priceFragment)
                     mainFrame.currentItem = 0
-                   item.setIcon(R.drawable.ic_bottom_price)
+                    item.setIcon(R.drawable.ic_bottom_price)
                 }
                 R.id.navAlarm -> {
-                    //replaceFragment(alarmFragment)
+                    // replaceFragment(alarmFragment)
                     mainFrame.currentItem = 1
                     item.setIcon(R.drawable.ic_bottom_alarm)
                 }
                 R.id.navNews -> {
-                    //replaceFragment(newsFragment)
+                    // replaceFragment(newsFragment)
                     mainFrame.currentItem = 2
                     item.setIcon(R.drawable.ic_bottom_news)
                 }
             }
             return@OnNavigationItemSelectedListener true
         }
-    //------------------
-
-
+    // ------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         if (list != null) {
             for (i in list) {
                 currencyList.add(i as Currency)
-
             }
         }
 
@@ -90,20 +75,19 @@ class MainActivity : AppCompatActivity() {
         val pAd = MyPagerAdapter(this, supportFragmentManager)
         mainFrame.adapter = pAd
         // pager Listener
-        mainFrame.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+        mainFrame.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
             }
 
             override fun onPageSelected(position: Int) {
-                //****
+                // ****
                 makeNavIconsGray()
 
-                when(position){
+                when (position) {
                     0 -> {
                         navBottom.selectedItemId = R.id.navPrice
                     }
@@ -115,23 +99,19 @@ class MainActivity : AppCompatActivity() {
                         navBottom.selectedItemId = R.id.navNews
                     }
                 }
-                //***
-
+                // ***
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-
             }
-
         })
-
     }
 
     override fun onStart() {
         super.onStart()
         onOpenFirstTimeMenu()
     }
-    private fun onOpenFirstTimeMenu(){
+    private fun onOpenFirstTimeMenu() {
         navBottom.itemIconTintList = null
         navBottom.selectedItemId = R.id.navPrice
         navBottom.selectedItemId = R.id.navPrice
@@ -141,9 +121,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadingBarInstantiate() {
         loadingProgressBar = ContentLoadingProgressBar(this)
-
     }
-
 
     private fun instantiateFrags() {
         priceFragment = PriceFragment()
@@ -151,12 +129,9 @@ class MainActivity : AppCompatActivity() {
         newsFragment = NewsFragment()
     }
 
-
-     fun makeNavIconsGray() {
+    fun makeNavIconsGray() {
         navBottom.menu.findItem(R.id.navPrice).setIcon(R.drawable.ic_price_gray)
         navBottom.menu.findItem(R.id.navAlarm).setIcon(R.drawable.ic_bell_gray)
         navBottom.menu.findItem(R.id.navNews).setIcon(R.drawable.ic_menu_gray)
     }
-
-
 }

@@ -1,13 +1,9 @@
 package com.example.coinz.adapters
 
 import android.content.Context
-import android.view.View
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.PagerAdapter
-import com.example.coinz.R
 import com.example.coinz.ui.MainActivity
 import com.example.coinz.ui.fragments.AlarmFragment
 import kotlinx.android.synthetic.main.activity_main.*
