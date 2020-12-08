@@ -47,7 +47,7 @@ class AlarmAdapter_RV(var context: Context, var data: MutableList<Alarm>,var fra
     override fun onBindViewHolder(holder: AlarmAdapter_RV.MyViewHolder, position: Int) {
 
         holder.tvAlarmType.text = getTypeString(data[position].type)
-        holder.tvValue.text = data[position].amount.toString()
+        holder.tvValue.text = "$"+data[position].amount.toString()
         holder.tvCurrencyNameTrigger.text = data[position].currencyName
         Glide.with(context).load(data[position].icon).into(holder.imgAlarmIconItem)
 

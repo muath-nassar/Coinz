@@ -1,88 +1,162 @@
 package com.example.coinz.ui
 
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.example.coinz.R
+import com.example.coinz.adapters.MyPagerAdapter
 import com.example.coinz.models.Currency
+import com.example.coinz.models.CurrencyResponse
+import com.example.coinz.retrofit.ApiClient
+import com.example.coinz.retrofit.ApiInterface
 import com.example.coinz.ui.fragments.AlarmFragment
 import com.example.coinz.ui.fragments.NewsFragment
 import com.example.coinz.ui.fragments.PriceFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_price.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+
+    }
+
+    lateinit var priceFragment: PriceFragment
+    lateinit var alarmFragment: AlarmFragment
+    lateinit var newsFragment: NewsFragment
+    lateinit var sharedPreferences: SharedPreferences
     var currencyList: MutableList<Currency> = mutableListOf()
+    private lateinit var loadingProgressBar: ContentLoadingProgressBar
 
     //----------------------
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            newsDescriptionFragHolder.visibility = View.GONE
+            mainFrame.visibility = View.VISIBLE
             makeNavIconsGray()
             when (item.itemId) {
+
                 R.id.navPrice -> {
-                    replaceFragment(PriceFragment())
-                    item.setIcon(R.drawable.ic_bottom_price)
-                    return@OnNavigationItemSelectedListener true
+                    //replaceFragment(priceFragment)
+                    mainFrame.currentItem = 0
+                   item.setIcon(R.drawable.ic_bottom_price)
                 }
                 R.id.navAlarm -> {
-                    replaceFragment(AlarmFragment())
+                    //replaceFragment(alarmFragment)
+                    mainFrame.currentItem = 1
                     item.setIcon(R.drawable.ic_bottom_alarm)
-                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.navNews -> {
-                    replaceFragment(NewsFragment())
+                    //replaceFragment(newsFragment)
+                    mainFrame.currentItem = 2
                     item.setIcon(R.drawable.ic_bottom_news)
-
-                    return@OnNavigationItemSelectedListener true
                 }
             }
-            false
+            return@OnNavigationItemSelectedListener true
         }
     //------------------
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navBottom.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navBottom.selectedItemId = R.id.navPrice
+
+        loadingBarInstantiate()
+        instantiateFrags()
+        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+
+        val list = intent.getParcelableArrayListExtra<Parcelable>("c_list")
+        if (list != null) {
+            for (i in list) {
+                currencyList.add(i as Currency)
+
+            }
+        }
+
+        // create pager adapter
+        val pAd = MyPagerAdapter(this, supportFragmentManager)
+        mainFrame.adapter = pAd
+        // pager Listener
+        mainFrame.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                //****
+                makeNavIconsGray()
+
+                when(position){
+                    0 -> {
+                        navBottom.selectedItemId = R.id.navPrice
+                    }
+
+                    1 -> {
+                        navBottom.selectedItemId = R.id.navAlarm
+                    }
+                    2 -> {
+                        navBottom.selectedItemId = R.id.navNews
+                    }
+                }
+                //***
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+        })
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        onOpenFirstTimeMenu()
+    }
+    private fun onOpenFirstTimeMenu(){
         navBottom.itemIconTintList = null
-        //----------
-/*        val states = arrayOf(
-            intArrayOf(-android.R.attr.state_active),
-            intArrayOf(android.R.attr.state_pressed)
-        )
+        navBottom.selectedItemId = R.id.navPrice
+        navBottom.selectedItemId = R.id.navPrice
+        navBottom.selectedItemId = R.id.navPrice
+        navBottom.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
 
-        val colors = intArrayOf(
-            Color.RED,
-            Color.GREEN
-        )
-
-        val myList = ColorStateList(states, colors)*/
-        //----------
-
-/*
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.statusBarColor = Color.WHITE
-
-*/
+    private fun loadingBarInstantiate() {
+        loadingProgressBar = ContentLoadingProgressBar(this)
 
     }
 
-    fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.mainFrame, fragment).commit()
+
+    private fun instantiateFrags() {
+        priceFragment = PriceFragment()
+        alarmFragment = AlarmFragment()
+        newsFragment = NewsFragment()
     }
 
-    private fun makeNavIconsGray() {
+
+     fun makeNavIconsGray() {
         navBottom.menu.findItem(R.id.navPrice).setIcon(R.drawable.ic_price_gray)
         navBottom.menu.findItem(R.id.navAlarm).setIcon(R.drawable.ic_bell_gray)
         navBottom.menu.findItem(R.id.navNews).setIcon(R.drawable.ic_menu_gray)
     }
+
 
 }

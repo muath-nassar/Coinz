@@ -19,6 +19,15 @@
             android:text="@string/news_and_reports"
             android:elevation="@dimen/_5sdp"
             style="@style/titleFont"/>
+        <ProgressBar
+            android:id="@+id/progress_circular_table"
+            android:layout_width="match_parent"
+            android:secondaryProgressTint="@color/gray"
+            android:layout_height="@dimen/_75sdp"
+            android:layout_marginTop="@dimen/_75sdp"
+            android:progressTint="@color/gray"
+            android:visibility="gone"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNews"
             android:layout_width="match_parent"

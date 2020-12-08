@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.NewsDescription"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/topDiv"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topDiv"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="ScrollViewSize">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/titleFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="انتعاش في قيمة العملات الرقمية الرئيسية تمثلت بارتفاع كل من البيتكوين والاثيريوم "
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                style="@style/subtitleFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text=" 25 يناير 2018" />
+
+            <ImageView
+                android:id="@+id/imgNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bitcoin" />
+            <!-- ttttt-->
+            <WebView
+                android:textAlignment="textStart"
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layoutDirection="rtl"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

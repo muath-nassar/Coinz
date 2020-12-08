@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
     android:layoutDirection="rtl"
-    android:theme="@style/material">
 
-<FrameLayout
-    android:id="@+id/mainFrame"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/navBottom">
-</FrameLayout>
+    tools:context=".ui.MainActivity">
+
+    <com.duolingo.open.rtlviewpager.RtlViewPager
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navBottom" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/newsDescriptionFragHolder"
+        android:visibility="gone"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingBottom="@dimen/_10sdp"
-        android:paddingTop="@dimen/_5sdp"
         android:background="#F9F9FA"
-        app:menu="@menu/bottom_navigation_home_activity"/>
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:menu="@menu/bottom_navigation_home_activity" />
 </RelativeLayout>

@@ -14,8 +14,11 @@ interface ApiInterface {
     fun getTriggers():Call<TriggerListResponse>
 
     @POST("triggers")
-    fun addTrigger(@Body alarm: AlarmToPost):Call<Alarm>
+    fun addTrigger(@Body alarm: AlarmToPost):Call<AddAlarmResponse>
 
     @DELETE("triggers")
     fun deleteTrigger(@Query("id") alarmId : Int):Call<DeleteStatus>
+
+    @GET("news/list")
+    fun getNewsList():Call<NewsListResponse>
 }

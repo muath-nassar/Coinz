@@ -27,7 +27,9 @@
             android:id="@+id/tvCurrencyNameTrigger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CurrencyName"/>
+            android:text="CurrencyName"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

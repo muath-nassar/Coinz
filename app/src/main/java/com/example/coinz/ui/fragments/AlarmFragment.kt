@@ -1,11 +1,14 @@
 package com.example.coinz.ui.fragments
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinz.R
 import com.example.coinz.adapters.AlarmAdapter_RV
@@ -15,6 +18,7 @@ import com.example.coinz.models.Alarm
 import com.example.coinz.models.AlarmToPost
 import com.example.coinz.models.OnDeleteHandler
 import com.example.coinz.models.TriggerListResponse
+import com.example.coinz.retrofit.AddAlarmResponse
 import com.example.coinz.retrofit.ApiClient
 import com.example.coinz.retrofit.ApiInterface
 import com.example.coinz.ui.MainActivity
@@ -24,11 +28,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class AlarmFragment : Fragment(),OnDeleteHandler {
     private lateinit var triggerList: MutableList<Alarm>
     companion object {
-        val headerUDID = "testmmm"// this should be something else in the actual application
-        val alarmTypes = arrayOf("أصغر من", "يساوي","أكبر من")
+        val alarmTypes = arrayOf("أصغر من", "يساوي", "أكبر من")
         lateinit var spinnerAdapter: SpinnerAlarmTypeAdapter
     }
 
@@ -42,27 +46,24 @@ class AlarmFragment : Fragment(),OnDeleteHandler {
         return root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        spinnerAdapter = SpinnerAlarmTypeAdapter(activity!!, alarmTypes)
-        getTriggersList()
-    }
-
     private fun getTriggersList() {
+        root.progress_circular_table.visibility = View.VISIBLE
         val service = ApiClient.getInstance().create(ApiInterface::class.java)
         val call = service.getTriggers()
-        call.enqueue(object : Callback<TriggerListResponse>{
+        call.enqueue(object : Callback<TriggerListResponse> {
             override fun onFailure(call: Call<TriggerListResponse>, t: Throwable) {
-                Log.e("mmm", t.localizedMessage)
+                Log.e("mmm", t.localizedMessage!!)
+                root.progress_circular_table.visibility = View.GONE
             }
 
             override fun onResponse(
                 call: Call<TriggerListResponse>,
                 response: Response<TriggerListResponse>
             ) {
-                Log.e("mmm",response.raw().toString())
+                Log.e("mmm", response.raw().toString())
                 triggerList = response.body()!!.list
                 updateAdapter(triggerList)
+                root.progress_circular_table.visibility = View.GONE
             }
 
         })
@@ -70,16 +71,18 @@ class AlarmFragment : Fragment(),OnDeleteHandler {
 
     override fun onStart() {
         super.onStart()
+        spinnerAdapter = SpinnerAlarmTypeAdapter(activity!!, alarmTypes)
+        getTriggersList()
         val data = (activity as MainActivity).currencyList
         root.spinnerCurrency.adapter = SpinnerAdapter(activity!!, data)
         //----------
 
         root.spinnerAlarmType.adapter = spinnerAdapter
     }
-    private fun updateAdapter(list : MutableList<Alarm>){
-        root.rvAlarms.adapter = AlarmAdapter_RV(activity!!,list,this)
+    private fun updateAdapter(list: MutableList<Alarm>){
+        root.rvAlarms.adapter = AlarmAdapter_RV(activity!!, list, this)
         root.rvAlarms.layoutManager= LinearLayoutManager(this.activity)
-        Log.e("mmm",list.size.toString())
+        Log.e("mmm", list.size.toString())
     }
     private fun handleBtnNewTrigger(){
         val isReadyToSubmit = etMoneyAmountAlarm.text.isNotEmpty()
@@ -99,18 +102,24 @@ class AlarmFragment : Fragment(),OnDeleteHandler {
         val currencyPosition = spinnerCurrency.selectedItemPosition
         val currency = (activity as MainActivity).currencyList[currencyPosition]
         val sCode = currency.code
-        val postAlarm = AlarmToPost(type,value.toDouble(),sCode!!)
+        val postAlarm = AlarmToPost(type, value.toDouble(), sCode!!)
 
         val call = service.addTrigger(postAlarm)
-        call.enqueue(object: Callback<Alarm>{
-            override fun onFailure(call: Call<Alarm>, t: Throwable) {
+        call.enqueue(object : Callback<AddAlarmResponse> {
+            override fun onFailure(call: Call<AddAlarmResponse>, t: Throwable) {
                 t.printStackTrace()
-                Log.e("mmm","this error is from the post "+t.localizedMessage)
+                Log.e("mmm", "هناك خطأ بالاتصال. يرجى المعاودة لاحقا. " + t.localizedMessage)
 
             }
 
-            override fun onResponse(call: Call<Alarm>, response: Response<Alarm>) {
+            override fun onResponse(call: Call<AddAlarmResponse>, response: Response<AddAlarmResponse>) {
                 getTriggersList()
+                Log.e("addd",response.toString())
+                if (response.code() == 200)
+                Toast.makeText(context,response.body()!!.status.message,Toast.LENGTH_SHORT).show()
+                else{
+                    Toast.makeText(context,"التنبيه مضاف مسبقا",Toast.LENGTH_SHORT).show()
+                }
             }
 
         })
@@ -121,11 +130,24 @@ class AlarmFragment : Fragment(),OnDeleteHandler {
         super.onResume()
         btnNewTrigger.setOnClickListener {
             handleBtnNewTrigger()
+            hideKeyboard(activity!!)
+
         }
     }
 
     override fun onDeleteSuccess() {
         getTriggersList()
+    }
+    fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        //Find the currently focused view, so we can grab the correct window token from it.
+        var view = activity.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 

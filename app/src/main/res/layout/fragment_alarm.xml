@@ -83,7 +83,7 @@
                 android:background="@drawable/shape_text_money_alarm"
                 android:gravity="center"
                 android:hint="$1000"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textSize="@dimen/_10ssp" />
         </LinearLayout>
@@ -110,6 +110,15 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
             android:background="@color/semi_gray" />
+        <ProgressBar
+            android:id="@+id/progress_circular_table"
+            android:layout_width="match_parent"
+            android:secondaryProgressTint="@color/gray"
+            android:layout_height="@dimen/_75sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:progressTint="@color/gray"
+            android:visibility="gone"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAlarms"
